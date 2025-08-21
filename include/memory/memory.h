@@ -10,9 +10,9 @@
 #define WORD_SIZE 4               // 4 bytes per word
 
 typedef struct {
-  uint32_t base_size;  // Base address (usually 0)
-  uint8_t* data;       // Raw memory array
-  size_t size;         // Total memory size
+  uint32_t base_address;  // Base address (usually 0)
+  uint8_t* data;         // Raw memory array
+  size_t size;          // Total memory size
 } memory_t;
 
 memory_t* memory_create(size_t size);

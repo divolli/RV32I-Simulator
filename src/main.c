@@ -6,5 +6,6 @@ int main(void){
   cpu_write_register(cpu, 1, 0x12345678);
   assert(cpu_read_register(cpu, 1) == 0x12345678);
   assert(cpu_read_register(cpu, 0) == 0);
+  cpu_destroy(cpu);
   return 0;
 }
