@@ -1,6 +1,8 @@
 #ifndef INSTRUCTIONS_H
 #define INSTRUCTIONS_H
 
+#include "cpu/cpu.h"
+#include "memory/memory.h"
 #include <stdint.h>
 
 // Instructions
@@ -47,8 +49,7 @@ typedef union {
 #define FUNCT_OR    0x25    // Bitwise OR
 
 // Function declarations
-instruction_t decode_instruction(uint32_t word);
-const char* get_instruction_name(instruction_t instr);
-void print_instruction(instruction_t instr);
-
+instruction_t* create_instruction(uint32_t word);
+void destroy_instruction(instruction_t* instr);
+void print_instruction(instruction_t* instr);
 #endif
