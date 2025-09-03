@@ -58,25 +58,29 @@ void print_instruction(instruction_t* instr){
       break;
     case OP_ADDI:
       // Format: ADDI $rt, $rs, immediate
-      printf("ADDI $%d, $%d, $%d", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
+      int16_t signed_imm = (int16_t)instr->i_type.immediate;
+      printf("ADDI $%d, $%d, %d", instr->i_type.rt, instr->i_type.rs, signed_imm);
       break;
     case OP_LW:
       // Format: LOAD WORD $rt, $rs, immediate
-      printf("LOAD WORD $%d, $%d, $%d", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
+      printf("LW $%d, $%d($%d)", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
       break;
     case OP_SW:
       // Format: STORE WORD $rt, $rs, immediate
-      printf("STORE WORD $%d, $%d, $%d", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
+      printf("SW $%d, $%d($%d)", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
       break;
     case OP_BEQ:
-      // Format: BRANCH $rt, $rs, immediate
-      printf("BRANCH $%d, $%d, $%d", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
+      // Format: BRANCH IF EQUAL $rt, $rs, immediate
+      printf("BEQ $%d, $%d, $%d", instr->i_type.rt, instr->i_type.rs, instr->i_type.immediate);
       break;
     case OP_J:
       // Format: JUMP $address
-      printf("JUMP $%d", instr->j_type.address);
+      printf("J %d", instr->j_type.address);
       break;
-    default: return;
+    // add more opcodes
+    default:
+      printf("UNKNOWN");
+      return;
   }
 
   printf("\n");
